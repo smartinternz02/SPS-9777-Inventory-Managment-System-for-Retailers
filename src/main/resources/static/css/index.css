@@ -1,0 +1,21 @@
+body{
+  text-align: center;
+  color: white;
+    background-image: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), url(https://source.unsplash.com/GK8x_XCcDZg/1300x700);
+
+
+}
+
+h1{
+  font-family: 'Archivo Black', sans-serif;
+}
+
+p{
+  font-family: 'Arvo', serif;
+}
+
+.hero{
+  padding: 10%;
+  color: white;
+
+}
