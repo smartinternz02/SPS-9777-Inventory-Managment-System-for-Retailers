@@ -50,12 +50,7 @@ public class InventoryController {
 		String encodedPassword = passwordEncoder.encode(user.getPassword());
 		user.setPassword(encodedPassword);
 		userRepo.save(user);
-		try {
-			sendEmail(user.getEmail());
-		}
-		catch(Exception e) {
-			
-		}
+		email=user.getEmail();
 	 
 		return "dashboard";
 	}
@@ -63,7 +58,14 @@ public class InventoryController {
 		public String dashboard(Model model) throws IOException, URISyntaxException {
 		List<Product> listProducts = service.listAll();
 		
-		if(listProducts.isEmpty()) 
+		if(listProducts.isEmpty()) {
+			try {
+				sendEmail(email);
+			}
+			catch(Exception e) {
+				
+			}
+		}
 			
 	    model.addAttribute("listProducts", listProducts);
 	    
