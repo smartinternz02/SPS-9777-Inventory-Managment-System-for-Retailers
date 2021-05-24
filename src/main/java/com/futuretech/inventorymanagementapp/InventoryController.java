@@ -24,7 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class InventoryController {
-	public String email;
+	public String em;
 	@Autowired 
 	private JavaMailSender sender;
 	@Autowired
@@ -50,7 +50,7 @@ public class InventoryController {
 		String encodedPassword = passwordEncoder.encode(user.getPassword());
 		user.setPassword(encodedPassword);
 		userRepo.save(user);
-		email=user.getEmail();
+		em=user.getEmail();
 	 
 		return "dashboard";
 	}
@@ -60,7 +60,7 @@ public class InventoryController {
 		
 		if(listProducts.isEmpty()) {
 			try {
-				sendEmail(email);
+				sendEmail(em);
 			}
 			catch(Exception e) {
 				
