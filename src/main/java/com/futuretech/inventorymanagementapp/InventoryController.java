@@ -105,7 +105,7 @@ public class InventoryController {
 		MimeMessage message = sender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(message);
 		
-		helper.setFrom("inventory.management00@gmail.com");
+//		helper.setFrom("inventory.00.management@gmail.com");
 		helper.setTo(email);
 		helper.setText("You have an empty inventory!!!!");
 		helper.setSubject("Inventory storage is empty");
