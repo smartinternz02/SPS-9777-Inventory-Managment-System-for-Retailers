@@ -7,6 +7,8 @@ import java.util.List;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -26,7 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class InventoryController {
 	public String em;
 	@Autowired 
-	private JavaMailSender sender;
+	private SendEmailService sendEmailService;
 	@Autowired
 	UserRepository userRepo;
 	@Autowired
@@ -60,7 +62,7 @@ public class InventoryController {
 		
 		if(listProducts.isEmpty()) {
 			try {
-				sendEmail(em);
+				sendEmailService.sendEmail(em, "Inventory is empty", "Ran out of stocks");
 			}
 			catch(Exception e) {
 				
@@ -98,20 +100,6 @@ public class InventoryController {
 	public String deleteProduct(@PathVariable(name = "id") int id) {
 	    service.delete(id);
 	    return "redirect:/dashboard";       
-	}
-	private void sendEmail(String email)throws Exception{
-		System.out.println("Sending Mail");
-		System.out.println(email);
-		MimeMessage message = sender.createMimeMessage();
-		MimeMessageHelper helper = new MimeMessageHelper(message);
-		
-//		helper.setFrom("inventory.00.management@gmail.com");
-		helper.setTo(email);
-		helper.setText("You have an empty inventory!!!!");
-		helper.setSubject("Inventory storage is empty");
-		
-		sender.send(message);
-		System.out.println("Mail sent");
 	}
 	
 	

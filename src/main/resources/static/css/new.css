@@ -1,0 +1,9 @@
+body{
+	 background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ),url(https://source.unsplash.com/JwMGy1h-JsY/1400x700);
+
+}
+
+.content{
+	color:white;
+	padding:3%;
+}
